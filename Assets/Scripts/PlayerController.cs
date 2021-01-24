@@ -29,9 +29,11 @@ public class PlayerController : MonoBehaviour
         // Restrict player to world bounds
         if (player.transform.position.x < -bounds)
         {
+            // Set player position to left bounds
             player.transform.position = new Vector3(-bounds, transform.position.y, transform.position.z);
         } else if (player.transform.position.x > bounds)
         {
+            // Set player position to right bounds
             player.transform.position = new Vector3(bounds, transform.position.y, transform.position.z);
         }
     }
