@@ -9,8 +9,7 @@ public class PlayerController : MonoBehaviour
     public GameObject player;
     public float horizontalInput = 0.0f;
     public float speed = 10.0f;
-    private int boundsL = -20;
-    private int boundsR = 20;
+    private int bounds = 20;
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +27,12 @@ public class PlayerController : MonoBehaviour
         player.transform.position += (Vector3.right * horizontalInput * speed * Time.deltaTime);
 
         // Restrict player to world bounds
-        if (player.transform.position.x < boundsL)
+        if (player.transform.position.x < -bounds)
         {
-            player.transform.position = new Vector3(boundsL, transform.position.y, transform.position.z);
-        } else if (player.transform.position.x > boundsR)
+            player.transform.position = new Vector3(-bounds, transform.position.y, transform.position.z);
+        } else if (player.transform.position.x > bounds)
         {
-            player.transform.position = new Vector3(boundsR, transform.position.y, transform.position.z);
+            player.transform.position = new Vector3(bounds, transform.position.y, transform.position.z);
         }
     }
 }
