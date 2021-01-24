@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public float horizontalInput = 0.0f;
     public float speed = 10.0f;
 
-    private int bounds = 20;
+    private int bounds = 15;
 
     public int isFire = 0;
 

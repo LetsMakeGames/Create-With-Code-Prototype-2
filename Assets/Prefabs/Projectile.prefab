@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 6731484425145932119}
   - component: {fileID: 6731484425146945171}
   - component: {fileID: 6731484425198125586}
+  - component: {fileID: 1499747552}
   m_Layer: 0
-  m_Name: Apple
+  m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,3 +92,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 40
+--- !u!114 &1499747552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6731484425144979877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd1fac767945f348a58ae28eb822626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
