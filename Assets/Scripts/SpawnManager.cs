@@ -7,6 +7,8 @@ public class SpawnManager : MonoBehaviour
     // Initialize Variables
     public GameObject[] animalPrefabs;
     public int spawnSpeedChange = 0;
+    public int spawnRange = 15;
+    public int spawnPositionZ = 20;
 
     private int timeLapse = 0;
     private int spawnTimer = 1;
@@ -44,10 +46,12 @@ public class SpawnManager : MonoBehaviour
         if (spawnTimer == 0)
         {
 
-            // Spawn random animal prefabs
-            Instantiate(animalPrefabs[animalIndex], new Vector3(0, 0, 20), animalPrefabs[animalIndex].transform.rotation);
+            Vector3 spawnPosition = new Vector3(Random.Range(-spawnRange, spawnRange), 0, spawnPositionZ);
 
-            // reset timer and randomize spawn speed change.
+            // Spawn random animal prefabs
+            Instantiate(animalPrefabs[animalIndex], spawnPosition, animalPrefabs[animalIndex].transform.rotation);
+
+            // Set spawn timer to spawn speed change, then randomize next spawn speed change.
             spawnTimer = spawnSpeedChange;
             spawnSpeedChange = Random.Range(1, 5);
 
