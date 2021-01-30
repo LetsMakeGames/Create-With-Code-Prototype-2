@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayer()
     {
+
         // Move player left/right, includes speed.
         player.transform.position += (Vector3.right * horizontalInput * speed * Time.deltaTime);
 
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
             player.transform.position = new Vector3(-bounds, transform.position.y, transform.position.z);
         }
         else if (player.transform.position.x > bounds)
+
         {
             // Set player position to right bounds
             player.transform.position = new Vector3(bounds, transform.position.y, transform.position.z);
@@ -61,5 +63,6 @@ public class PlayerController : MonoBehaviour
             Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
             isFire = 1;
         }
+
     }
 }
