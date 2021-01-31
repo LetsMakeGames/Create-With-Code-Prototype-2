@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public float horizontalInput = 0.0f;
     public float speed = 10.0f;
 
-    private int bounds = 15;
+    private int bounds = 18;
 
     public int isFire = 0;
 
@@ -31,13 +31,22 @@ public class PlayerController : MonoBehaviour
         // Move Player
         MovePlayer();
 
+        // Fire Projectile
         FireProjectile();
     }
 
     void MovePlayer()
     {
-        // Move player left/right, includes speed.
-        player.transform.position += (Vector3.right * horizontalInput * speed * Time.deltaTime);
+        if (Input.GetButton("Fire3"))
+        {
+            // Move player left/right with sprint.
+            player.transform.position += (Vector3.right * horizontalInput * (speed * 2) * Time.deltaTime);
+        } else
+        {
+            // Move player left/right, no sprint.
+            player.transform.position += (Vector3.right * horizontalInput * speed * Time.deltaTime);
+        }
+
 
         // Restrict player to world bounds
         if (player.transform.position.x < -bounds)
