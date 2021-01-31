@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public float horizontalInput = 0.0f;
     public float speed = 10.0f;
 
-    private int bounds = 15;
+    private int bounds = 18;
 
     public int isFire = 0;
 
@@ -31,14 +31,22 @@ public class PlayerController : MonoBehaviour
         // Move Player
         MovePlayer();
 
+        // Fire Projectile
         FireProjectile();
     }
 
     void MovePlayer()
     {
+        if (Input.GetButton("Fire3"))
+        {
+            // Move player left/right with sprint.
+            player.transform.position += (Vector3.right * horizontalInput * (speed * 2) * Time.deltaTime);
+        } else
+        {
+            // Move player left/right, no sprint.
+            player.transform.position += (Vector3.right * horizontalInput * speed * Time.deltaTime);
+        }
 
-        // Move player left/right, includes speed.
-        player.transform.position += (Vector3.right * horizontalInput * speed * Time.deltaTime);
 
         // Restrict player to world bounds
         if (player.transform.position.x < -bounds)
@@ -47,7 +55,6 @@ public class PlayerController : MonoBehaviour
             player.transform.position = new Vector3(-bounds, transform.position.y, transform.position.z);
         }
         else if (player.transform.position.x > bounds)
-
         {
             // Set player position to right bounds
             player.transform.position = new Vector3(bounds, transform.position.y, transform.position.z);
@@ -63,6 +70,5 @@ public class PlayerController : MonoBehaviour
             Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
             isFire = 1;
         }
-
     }
 }
