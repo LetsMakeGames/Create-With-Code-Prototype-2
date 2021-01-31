@@ -6,12 +6,12 @@ public class SpawnManager : MonoBehaviour
 {
     // Initialize Variables
     public GameObject[] animalPrefabs;
-    public int spawnSpeedChange = 0;
-    public int spawnRange = 15;
-    public int spawnPositionZ = 20;
-
-    private int timeLapse = 0;
-    private int spawnTimer = 1;
+    
+    private float spawnStart = 2.0f;
+    private float spawnSpeed = 2.0f;
+    private int spawnRange = 15;
+    private int spawnPositionZ = 20;
+    private int animalArrayLength;
     private float timer = 0.0f;
     private int animalIndex = 0;
     
@@ -19,43 +19,34 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // remember original spawn speed and copy to speedChange
-        spawnSpeedChange = spawnTimer;
-
+        // Initialize tickers
+        InvokeRepeating("SpawnRandomAnimal", spawnStart, spawnSpeed);
+        InvokeRepeating("TimerTick", 1, 1);
     }
 
     // Update is called once per frame
     void Update()
+    {        
+
+
+    }
+
+    void TimerTick()
     {
+        // Timer that tracks the number of seconds the game has been running.
+        timer++;
+    }
 
-        // Timer for counting seconds
-        timer += Time.deltaTime;
-        if (timer >= 1)
-        {
-            // Randomize animalIndex every second
-            animalIndex = Random.Range(0, 2);
+    void SpawnRandomAnimal()
+    {
+        // Randomize animalIndex
+        animalArrayLength = animalPrefabs.Length;
+        animalIndex = Random.Range(0, animalArrayLength);
 
-            // Increment time to count runtime, increment timeLapse to count seconds, decrement spawnTimer to count time till spawn.
-            timeLapse++;
-            spawnTimer--;
-            timer = 0;
-
-        }
+        // Randomize spawn position of animals
+        Vector3 spawnPosition = new Vector3(Random.Range(-spawnRange, spawnRange), 0, spawnPositionZ);
         
-        // Spawn a random animal when spawnTimer reaches 0.
-        if (spawnTimer == 0)
-        {
-
-            Vector3 spawnPosition = new Vector3(Random.Range(-spawnRange, spawnRange), 0, spawnPositionZ);
-
-            // Spawn random animal prefabs
-            Instantiate(animalPrefabs[animalIndex], spawnPosition, animalPrefabs[animalIndex].transform.rotation);
-
-            // Set spawn timer to spawn speed change, then randomize next spawn speed change.
-            spawnTimer = spawnSpeedChange;
-            spawnSpeedChange = Random.Range(1, 5);
-
-        }
-
+        // Spawn random animal
+        Instantiate(animalPrefabs[animalIndex], spawnPosition, animalPrefabs[animalIndex].transform.rotation);
     }
 }
