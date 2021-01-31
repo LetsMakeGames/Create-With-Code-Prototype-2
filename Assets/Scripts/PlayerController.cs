@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 75.0f;
 
     private int bounds = 20;
-
+    
     public int isFire = 0;
 
     // Start is called before the first frame update
