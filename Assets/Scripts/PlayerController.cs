@@ -10,9 +10,9 @@ public class PlayerController : MonoBehaviour
     public GameObject projectilePrefab;
 
     public float horizontalInput = 0.0f;
-    public float speed = 10.0f;
+    public float speed = 75.0f;
 
-    private int bounds = 18;
+    private int bounds = 20;
 
     public int isFire = 0;
 
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButton("Fire3"))
         {
             // Move player left/right with sprint.
-            player.transform.position += (Vector3.right * horizontalInput * (speed * 2) * Time.deltaTime);
+            player.transform.position += (Vector3.right * horizontalInput * (speed * 3) * Time.deltaTime);
         } else
         {
             // Move player left/right, no sprint.
