@@ -19,6 +19,11 @@ public class DestroyOutOfBounds : MonoBehaviour
         // If game object is out of bounds, delete game object.
         if (transform.position.z > bounds || transform.position.z < -bounds || transform.position.x > bounds || transform.position.x < -bounds)
         {
+            if (transform.position.z < -bounds)
+            {
+                Debug.Log("Game Over! No animals should be left unfed!");
+                Destroy(gameObject);
+            }
             Destroy(gameObject);
         }
     }
